@@ -1,4 +1,4 @@
-import { Image, StyleSheet, Platform, View } from 'react-native';
+import { Image, StyleSheet, Platform, View, Text } from 'react-native';
 
 import { HelloWave } from '@/components/HelloWave';
 import ParallaxScrollView from '@/components/ParallaxScrollView';
@@ -15,6 +15,7 @@ export default function HomeScreen() {
         alignItems: 'center',
       }}
     >
+      <Text className='font-bold text-3xl my-10 font-rubik'>Home</Text>
       <Link href="/sign-in">Sign In</Link>
       <Link href="/explore">Explore</Link>
       <Link href="/profile">Profile</Link>
