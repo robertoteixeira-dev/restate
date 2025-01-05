@@ -1,5 +1,6 @@
 import {
   ActivityIndicator,
+  Button,
   FlatList,
   Image,
   Text,
@@ -17,16 +18,16 @@ import Search from "@/components/Search";
 import Filters from "@/components/Filters";
 import NoResults from "@/components/NoResult";
 import { Card, FeaturedCard } from "@/components/Card";
+import seed from "@/lib/seed";
 
 const Home = () => {
   const { user } = useGlobalContext();
-
   const params = useLocalSearchParams<{ query?: string; filter?: string }>();
 
-  // const { data: latestProperties, loading: latestPropertiesLoading } =
-  //   useAppwrite({
-  //     fn: getLatestProperties,
-  //   });
+  const { data: latestProperties, loading: latestPropertiesLoading } =
+    useAppwrite({
+      fn: getLatestProperties,
+    });
 
   const {
     data: properties,
@@ -50,7 +51,7 @@ const Home = () => {
     });
   }, [params.filter, params.query]);
 
-  // const handleCardPress = (id: string) => router.push(`/properties/${id}`);
+  const handleCardPress = (id: string) => router.push(`/properties/${id}`);
 
   return (
     <SafeAreaView className="h-full bg-white">
@@ -58,8 +59,7 @@ const Home = () => {
         data={properties}
         numColumns={2}
         renderItem={({ item }) => (
-          // <Card item={item} onPress={() => handleCardPress(item.$id)} />
-          <Card item={item} onPress={() => {}} />
+          <Card item={item} onPress={() => handleCardPress(item.$id)} />
         )}
         keyExtractor={(item) => item.$id}
         contentContainerClassName="pb-32"
@@ -107,7 +107,7 @@ const Home = () => {
                 </TouchableOpacity>
               </View>
 
-              {/* {latestPropertiesLoading ? (
+              {latestPropertiesLoading ? (
                 <ActivityIndicator size="large" className="text-primary-300" />
               ) : !latestProperties || latestProperties.length === 0 ? (
                 <NoResults />
@@ -125,7 +125,7 @@ const Home = () => {
                   showsHorizontalScrollIndicator={false}
                   contentContainerClassName="flex gap-5 mt-5"
                 />
-              )} */}
+              )}
             </View>
 
             {/* <Button title="seed" onPress={seed} /> */}

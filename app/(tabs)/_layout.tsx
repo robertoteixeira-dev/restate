@@ -59,9 +59,9 @@ export default function TabLayout() {
     );
   }
 
-  // if (!isLogged) {
-  //   return <Redirect href="/sign-in" />;
-  // }
+  if (!isLogged) {
+    return <Redirect href="/sign-in" />;
+  }
 
   // return <Slot />;
 
