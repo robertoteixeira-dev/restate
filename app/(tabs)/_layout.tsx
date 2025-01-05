@@ -1,15 +1,33 @@
-import { Tabs } from 'expo-router';
+import { Redirect, Slot, Tabs } from 'expo-router';
 import React from 'react';
-import { Platform } from 'react-native';
+import { ActivityIndicator, Platform, SafeAreaView } from 'react-native';
 
 import { HapticTab } from '@/components/HapticTab';
 import { IconSymbol } from '@/components/ui/IconSymbol';
 import TabBarBackground from '@/components/ui/TabBarBackground';
 import { Colors } from '@/constants/Colors';
 import { useColorScheme } from '@/hooks/useColorScheme';
+import { useGlobalContext } from '@/lib/global-provider';
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
+
+  const { loading, isLogged } = useGlobalContext();
+
+  if (loading) {
+    return (
+      <SafeAreaView className="bg-white h-full flex justify-center items-center">
+        <ActivityIndicator className="text-primary-300" size="large" />
+      </SafeAreaView>
+    );
+  }
+
+  if (!isLogged) {
+    return <Redirect href="/sign-in" />;
+  }
+
+  return <Slot />;
+
 
   return (
     <Tabs
