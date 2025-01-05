@@ -9,18 +9,14 @@ import {
 import { useEffect } from "react";
 import { router, useLocalSearchParams } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
-
 import icons from "@/constants/icons";
-
-// FeaturedCard
-
 import { useAppwrite } from "@/lib/useAppwrite";
 import { useGlobalContext } from "@/lib/global-provider";
 import { getLatestProperties, getProperties } from "@/lib/appwrite";
 import Search from "@/components/Search";
 import Filters from "@/components/Filters";
 import NoResults from "@/components/NoResult";
-import { Card } from "@/components/Card";
+import { Card, FeaturedCard } from "@/components/Card";
 
 const Home = () => {
   const { user } = useGlobalContext();
