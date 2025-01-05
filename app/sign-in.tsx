@@ -4,14 +4,22 @@ import {
   View,
   Image,
   TouchableOpacity,
+  Alert,
 } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import images from "@/constants/images";
 import icons from "@/constants/icons";
+import { login } from "@/lib/appwrite";
 
 const SignIn = () => {
-  const handleLogin = () => {
-    // Implement Google login here
+  const handleLogin = async () => {
+    const result = await login();
+
+    if (result) {
+      console.log("Login successful");
+    } else {
+      Alert.alert("Error", "Failed to login");
+    }
   };
 
   return (
